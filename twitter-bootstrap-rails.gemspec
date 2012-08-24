@@ -23,10 +23,12 @@ Gem::Specification.new do |s|
   
   if (RUBY_PLATFORM == 'java')
     s.add_dependency  'therubyrhino', '~> 1.73.4'
-  elsif (RUBY_PLATFORM == 'i386-mingw32')
-    #no dependency
   else
     s.add_dependency  'therubyracer', '~> 0.10.2'
+  end
+
+  if(RUBY_PLATFORM =~ /mingw/ || RUBY_PLATFORM =~ /mswin/)
+    s.remove_dependency 'therubyracer'
   end
   
   s.add_runtime_dependency     'less-rails', '~> 2.2.3'
